@@ -61,5 +61,8 @@ func (u *Uniqueue[T]) Contains(item T) bool {
 // IsEmpty returns true if the queue is empty, false otherwise.
 // Time complexity: O(1)
 func (u *Uniqueue[T]) IsEmpty() bool {
+	u.mu.RLock()
+	defer u.mu.RUnlock()
+
 	return u.uniqueue.IsEmpty()
 }
