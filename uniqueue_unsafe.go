@@ -48,7 +48,8 @@ func (u *UniqueueUnsafe[T]) Size() int {
 // Contains checks if an item exists in the queue.
 // Time complexity: O(1) due to hash map lookup
 func (u *UniqueueUnsafe[T]) Contains(item T) bool {
-	return u.queue.Contains(item)
+	_, ok := u.seen[item]
+	return ok
 }
 
 // IsEmpty returns true if the queue is empty, false otherwise.
